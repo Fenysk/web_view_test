@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:webview_windows/webview_windows.dart';
 
 class WebPage extends StatefulWidget {
-  const WebPage({super.key, required this.url});
+  const WebPage({super.key, required this.url, this.width, this.height});
 
   final String url;
+  final double? width;
+  final double? height;
 
   @override
   State<WebPage> createState() => _WebPageState();
@@ -52,6 +54,10 @@ class _WebPageState extends State<WebPage> {
           )
         : const CircularProgressIndicator();
 
-    return webPage;
+    return SizedBox(
+      width: widget.width,
+      height: widget.height,
+      child: webPage,
+    );
   }
 }
