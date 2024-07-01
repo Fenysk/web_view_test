@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
 import 'web_page_windows.dart';
+import 'web_page_macos.dart';
 import '../widgets/toolbar.dart';
 
 class JitsiPage extends StatefulWidget {
@@ -41,11 +42,14 @@ class _JitsiPageState extends State<JitsiPage> {
   Widget webPagePlatformSpecific() {
     return Platform.isWindows
         ? WebPageWindows(
-            url: 'http://localhost:5173',
+            // url: 'http://localhost:5173',
+            url: 'https://google.fr',
             onHangup: returnPreviousPage,
             onCameraStatusChange: (cameraStatus) => {},
           )
-        : const Placeholder();
+        : WebPageMacos(
+            url: 'https://google.fr',
+          );
   }
 
   @override
