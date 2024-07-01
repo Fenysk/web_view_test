@@ -5,7 +5,6 @@ import 'pages/jitsi_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
-  await windowManager.setResizable(false);
   await windowManager.setTitle('Batemates');
 
   runApp(const MainApp());
@@ -30,19 +29,15 @@ class HomePage extends StatelessWidget {
       context,
       MaterialPageRoute(builder: (context) => const JitsiPage()),
     );
-    await windowManager.setFullScreen(true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () => navigateToRoom(context),
-          child: const Text('Join room'),
+          child: const Text('Join a room'),
         ),
       ),
     );

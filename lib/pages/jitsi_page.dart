@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:window_manager/window_manager.dart';
-import 'web_page.dart';
+import 'dart:io' show Platform;
+import 'web_page_windows.dart';
 import '../widgets/toolbar.dart';
 
 class JitsiPage extends StatefulWidget {
@@ -29,7 +29,6 @@ class _JitsiPageState extends State<JitsiPage> {
               onPressed: () async {
                 Navigator.of(context).pop(); // Close the dialog
                 Navigator.of(context).pop(); // Exit the WebPage
-                await windowManager.setFullScreen(false);
               },
               child: const Text('Exit'),
             ),
@@ -39,13 +38,23 @@ class _JitsiPageState extends State<JitsiPage> {
     );
   }
 
+  Widget webPagePlatformSpecific() {
+    return Platform.isWindows
+        ? WebPageWindows(
+            url: 'http://localhost:5173',
+            onHangup: returnPreviousPage,
+            onCameraStatusChange: (cameraStatus) => {},
+          )
+        : const Placeholder();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Stack(
         children: [
-          const Positioned.fill(
-            child: WebPage(url: 'https://frontroom.batemates.app/'),
+          Positioned.fill(
+            child: webPagePlatformSpecific(),
           ),
           Positioned(
             bottom: 0,
