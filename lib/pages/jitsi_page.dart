@@ -40,7 +40,7 @@ class _JitsiPageState extends State<JitsiPage> {
   }
 
   Widget webPagePlatformSpecific() {
-    return Platform.isWindows
+    return Platform.isMacOS
         ? WebPageWindows(
             // url: 'http://localhost:5173',
             url: 'https://google.fr',
