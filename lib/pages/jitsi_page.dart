@@ -47,7 +47,7 @@ class _JitsiPageState extends State<JitsiPage> {
             onHangup: returnPreviousPage,
             onCameraStatusChange: (cameraStatus) => {},
           )
-        : WebPageMacos(
+        : const WebPageMacos(
             url: 'https://google.fr',
           );
   }
